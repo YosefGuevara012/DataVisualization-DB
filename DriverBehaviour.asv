@@ -569,13 +569,11 @@ puntos_max_permitidos_viaje = coeficiente * str2num(get(handles.distancia_del_vi
 puntaje_total = 9.05
 
 porcentaje_del_viaje = ((puntos_max_permitidos_viaje - puntaje_total)/puntos_max_permitidos_viaje)*100
-estrellas_del_viaje = (porcentaje_del_viaje * 5)/ 100
+estrellas_del
 
-% Visualizacion de reultados
-set(handles.puntaje_total,'String',puntaje_total)
 set(handles.porcentaje_resultado,'String',porcentaje_del_viaje)
-set(handles.estrellas_resultado,'String',estrellas_del_viaje)
-
+set(handles.porcentaje_resultado,'String',porcentaje_del_viaje)
+set(handles.puntaje_total,'String',puntaje_total)
 
 % --- Executes on button press in pushbutton3.
 function pushbutton3_Callback(hObject, eventdata, handles)
