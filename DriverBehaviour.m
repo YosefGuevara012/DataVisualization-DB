@@ -22,7 +22,7 @@ function varargout = DriverBehaviour(varargin)
 
 % Edit the above text to modify the response to help DriverBehaviour
 
-% Last Modified by GUIDE v2.5 25-Feb-2020 09:34:44
+% Last Modified by GUIDE v2.5 25-Feb-2020 11:33:00
 
 % Begin initialization code - DO NOT EDIT
 gui_Singleton = 1;
@@ -454,19 +454,19 @@ if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgr
 end
 
 
-% --- Executes on selection change in popupmenu1.
-function popupmenu1_Callback(hObject, eventdata, handles)
-% hObject    handle to popupmenu1 (see GCBO)
+% --- Executes on selection change in valores_base.
+function valores_base_Callback(hObject, eventdata, handles)
+% hObject    handle to valores_base (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
 
-% Hints: contents = cellstr(get(hObject,'String')) returns popupmenu1 contents as cell array
-%        contents{get(hObject,'Value')} returns selected item from popupmenu1
+% Hints: contents = cellstr(get(hObject,'String')) returns valores_base contents as cell array
+%        contents{get(hObject,'Value')} returns selected item from valores_base
 
 
 % --- Executes during object creation, after setting all properties.
-function popupmenu1_CreateFcn(hObject, eventdata, handles)
-% hObject    handle to popupmenu1 (see GCBO)
+function valores_base_CreateFcn(hObject, eventdata, handles)
+% hObject    handle to valores_base (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    empty - handles not created until after all CreateFcns called
 
@@ -501,18 +501,18 @@ end
 
 
 
-function edit10_Callback(hObject, eventdata, handles)
-% hObject    handle to edit10 (see GCBO)
+function tiempo_conducido_Callback(hObject, eventdata, handles)
+% hObject    handle to tiempo_conducido (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
 
-% Hints: get(hObject,'String') returns contents of edit10 as text
-%        str2double(get(hObject,'String')) returns contents of edit10 as a double
+% Hints: get(hObject,'String') returns contents of tiempo_conducido as text
+%        str2double(get(hObject,'String')) returns contents of tiempo_conducido as a double
 
 
 % --- Executes during object creation, after setting all properties.
-function edit10_CreateFcn(hObject, eventdata, handles)
-% hObject    handle to edit10 (see GCBO)
+function tiempo_conducido_CreateFcn(hObject, eventdata, handles)
+% hObject    handle to tiempo_conducido (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    empty - handles not created until after all CreateFcns called
 
@@ -561,17 +561,23 @@ puntos_max_permitidos= str2num(get(handles.puntos_max_text,'String'))
 promedio_hr_conducidas= str2num(get(handles.horas_conducidas_text,'String'))
 promedio_km_conducidas= str2num(get(handles.kilometros_conducidos_text,'String'))
 
+% Seleccion de valor base
+if get(handles.valores_base,'Value') == 1
+    coeficiente = puntos_max_permitidos / promedio_km_conducidas
+    puntos_max_permitidos_viaje = coeficiente * str2num(get(handles.distancia_del_viaje,'String'))
+elseif get(handles.valores_base,'Value') == 2
+    coeficiente = puntos_max_permitidos / promedio_hr_conducidas
+    puntos_max_permitidos_viaje = coeficiente * str2num(get(handles.tiempo_conducido,'String'))
+end  
+
 % Calculo de los resultados
 
-coeficiente = puntos_max_permitidos / promedio_km_conducidas
-puntos_max_permitidos_viaje = coeficiente * str2num(get(handles.distancia_del_viaje,'String'))
 
 puntaje_total = 9.05
-
 porcentaje_del_viaje = ((puntos_max_permitidos_viaje - puntaje_total)/puntos_max_permitidos_viaje)*100
 estrellas_del_viaje = (porcentaje_del_viaje * 5)/ 100
 
-% Visualizacion de reultados
+% Visualizacion de resultados
 set(handles.puntaje_total,'String',puntaje_total)
 set(handles.porcentaje_resultado,'String',porcentaje_del_viaje)
 set(handles.estrellas_resultado,'String',estrellas_del_viaje)

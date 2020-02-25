@@ -561,6 +561,12 @@ puntos_max_permitidos= str2num(get(handles.puntos_max_text,'String'))
 promedio_hr_conducidas= str2num(get(handles.horas_conducidas_text,'String'))
 promedio_km_conducidas= str2num(get(handles.kilometros_conducidos_text,'String'))
 
+% Seleccion de valor base
+if get(handles.valores_base,'Value') == 1
+    coeficiente = puntos_max_permitidos / promedio_km_conducidas
+elseif 
+    coeficiente = puntos_max_permitidos / promedio_hr_conducidas
+end    
 % Calculo de los resultados
 
 coeficiente = puntos_max_permitidos / promedio_km_conducidas
@@ -569,11 +575,13 @@ puntos_max_permitidos_viaje = coeficiente * str2num(get(handles.distancia_del_vi
 puntaje_total = 9.05
 
 porcentaje_del_viaje = ((puntos_max_permitidos_viaje - puntaje_total)/puntos_max_permitidos_viaje)*100
-estrellas_del
+estrellas_del_viaje = (porcentaje_del_viaje * 5)/ 100
 
-set(handles.porcentaje_resultado,'String',porcentaje_del_viaje)
-set(handles.porcentaje_resultado,'String',porcentaje_del_viaje)
+% Visualizacion de resultados
 set(handles.puntaje_total,'String',puntaje_total)
+set(handles.porcentaje_resultado,'String',porcentaje_del_viaje)
+set(handles.estrellas_resultado,'String',estrellas_del_viaje)
+
 
 % --- Executes on button press in pushbutton3.
 function pushbutton3_Callback(hObject, eventdata, handles)
