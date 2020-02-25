@@ -22,7 +22,7 @@ function varargout = DriverBehaviour(varargin)
 
 % Edit the above text to modify the response to help DriverBehaviour
 
-% Last Modified by GUIDE v2.5 25-Feb-2020 11:33:00
+% Last Modified by GUIDE v2.5 25-Feb-2020 13:40:07
 
 % Begin initialization code - DO NOT EDIT
 gui_Singleton = 1;
@@ -559,11 +559,11 @@ puntaje_total = acceleracion_var + frenado_var + giro_var +accidente_var + ralen
 % Valores de la base
 puntos_max_permitidos= str2num(get(handles.puntos_max_text,'String'))
 promedio_hr_conducidas= str2num(get(handles.horas_conducidas_text,'String'))
-promedio_km_conducidas= str2num(get(handles.kilometros_conducidos_text,'String'))
+promedio_km_conducidos= str2num(get(handles.kilometros_conducidos_text,'String'))
 
 % Seleccion de valor base
 if get(handles.valores_base,'Value') == 1
-    coeficiente = puntos_max_permitidos / promedio_km_conducidas
+    coeficiente = puntos_max_permitidos / promedio_km_conducidos
     puntos_max_permitidos_viaje = coeficiente * str2num(get(handles.distancia_del_viaje,'String'))
 elseif get(handles.valores_base,'Value') == 2
     coeficiente = puntos_max_permitidos / promedio_hr_conducidas
@@ -583,11 +583,46 @@ set(handles.porcentaje_resultado,'String',porcentaje_del_viaje)
 set(handles.estrellas_resultado,'String',estrellas_del_viaje)
 
 
-% --- Executes on button press in pushbutton3.
-function pushbutton3_Callback(hObject, eventdata, handles)
-% hObject    handle to pushbutton3 (see GCBO)
+% --- Executes on button press in graficar.
+function graficar_Callback(hObject, eventdata, handles)
+% hObject    handle to graficar (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
+
+% paramteros del Axes
+axes(handles.axes1)
+title('Resultado de la clificacion por estrellas')
+xlim([0 50])
+ylim([0 5])
+ylabel('Estrellas')
+xlabel('Distancia en km')
+grid
+
+% Captura de constantes para el coeficiente
+puntos_max_permitidos= str2num(get(handles.puntos_max_text,'String'))
+promedio_hr_conducidas= str2num(get(handles.horas_conducidas_text,'String'))
+promedio_km_conducidos= str2num(get(handles.kilometros_conducidos_text,'String'))
+
+% variable no fija
+distancia = [0:1:50]
+
+% calculo de la grafica
+
+coeficiente = puntos_max_permitidos/promedio_km_conducidos
+
+puntos_max_permitidos_viaje = coeficiente * distancia
+
+puntuacion = (str2num(get(handles.puntos_fijos,'String'))./puntos_max_permitidos_viaje)
+puntuacion = 1 - puntuacion
+puntuacion = puntuacion*5
+
+
+for i = 1:50
+    if puntuacion(i) <= 0
+       puntuacion(i) = 0
+    end    
+end    
+plot(distancia,puntuacion)
 
 
 
@@ -603,6 +638,29 @@ function puntaje_total_Callback(hObject, eventdata, handles)
 % --- Executes during object creation, after setting all properties.
 function puntaje_total_CreateFcn(hObject, eventdata, handles)
 % hObject    handle to puntaje_total (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    empty - handles not created until after all CreateFcns called
+
+% Hint: edit controls usually have a white background on Windows.
+%       See ISPC and COMPUTER.
+if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
+    set(hObject,'BackgroundColor','white');
+end
+
+
+
+function puntos_fijos_Callback(hObject, eventdata, handles)
+% hObject    handle to puntos_fijos (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+
+% Hints: get(hObject,'String') returns contents of puntos_fijos as text
+%        str2double(get(hObject,'String')) returns contents of puntos_fijos as a double
+
+
+% --- Executes during object creation, after setting all properties.
+function puntos_fijos_CreateFcn(hObject, eventdata, handles)
+% hObject    handle to puntos_fijos (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    empty - handles not created until after all CreateFcns called
 
