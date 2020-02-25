@@ -81,7 +81,7 @@ function slider11_Callback(hObject, eventdata, handles)
 
 % Hints: get(hObject,'Value') returns position of slider
 %        get(hObject,'Min') and get(hObject,'Max') to determine range of slider
-set(handles.puntos_max_text,'String',round(get(hObject,'Value'),0))
+
 
 % --- Executes during object creation, after setting all properties.
 function slider11_CreateFcn(hObject, eventdata, handles)
@@ -103,7 +103,7 @@ function slider12_Callback(hObject, eventdata, handles)
 
 % Hints: get(hObject,'Value') returns position of slider
 %        get(hObject,'Min') and get(hObject,'Max') to determine range of slider
-set(handles.horas_conducidas_text,'String',round(get(hObject,'Value'),0))
+
 
 % --- Executes during object creation, after setting all properties.
 function slider12_CreateFcn(hObject, eventdata, handles)
@@ -125,7 +125,7 @@ function slider13_Callback(hObject, eventdata, handles)
 
 % Hints: get(hObject,'Value') returns position of slider
 %        get(hObject,'Min') and get(hObject,'Max') to determine range of slider
-set(handles.kilometros_conducidos_text,'String',round(get(hObject,'Value'),0))
+
 
 % --- Executes during object creation, after setting all properties.
 function slider13_CreateFcn(hObject, eventdata, handles)
@@ -280,7 +280,7 @@ function slider9_Callback(hObject, eventdata, handles)
 
 % Hints: get(hObject,'Value') returns position of slider
 %        get(hObject,'Min') and get(hObject,'Max') to determine range of slider
-set(handles.ralenti_max_text,'String',round(get(hObject,'Value'),0))
+set(handles.frenado_text,'String',round(get(hObject,'Value'),0))
 
 % --- Executes during object creation, after setting all properties.
 function slider9_CreateFcn(hObject, eventdata, handles)
@@ -302,7 +302,7 @@ function slider10_Callback(hObject, eventdata, handles)
 
 % Hints: get(hObject,'Value') returns position of slider
 %        get(hObject,'Min') and get(hObject,'Max') to determine range of slider
-set(handles.velocidad_max_text,'String',round(get(hObject,'Value'),0))
+
 
 % --- Executes during object creation, after setting all properties.
 function slider10_CreateFcn(hObject, eventdata, handles)
