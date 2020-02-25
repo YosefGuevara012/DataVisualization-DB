@@ -22,7 +22,7 @@ function varargout = DriverBehaviour(varargin)
 
 % Edit the above text to modify the response to help DriverBehaviour
 
-% Last Modified by GUIDE v2.5 24-Feb-2020 20:27:40
+% Last Modified by GUIDE v2.5 24-Feb-2020 23:18:21
 
 % Begin initialization code - DO NOT EDIT
 gui_Singleton = 1;
@@ -317,18 +317,18 @@ end
 
 
 
-function edit1_Callback(hObject, eventdata, handles)
-% hObject    handle to edit1 (see GCBO)
+function velocidad_puntos_Callback(hObject, eventdata, handles)
+% hObject    handle to velocidad_puntos (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
 
-% Hints: get(hObject,'String') returns contents of edit1 as text
-%        str2double(get(hObject,'String')) returns contents of edit1 as a double
+% Hints: get(hObject,'String') returns contents of velocidad_puntos as text
+%        str2double(get(hObject,'String')) returns contents of velocidad_puntos as a double
 
 
 % --- Executes during object creation, after setting all properties.
-function edit1_CreateFcn(hObject, eventdata, handles)
-% hObject    handle to edit1 (see GCBO)
+function velocidad_puntos_CreateFcn(hObject, eventdata, handles)
+% hObject    handle to velocidad_puntos (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    empty - handles not created until after all CreateFcns called
 
@@ -340,18 +340,18 @@ end
 
 
 
-function edit2_Callback(hObject, eventdata, handles)
-% hObject    handle to edit2 (see GCBO)
+function acceleracion_puntos_Callback(hObject, eventdata, handles)
+% hObject    handle to acceleracion_puntos (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
 
-% Hints: get(hObject,'String') returns contents of edit2 as text
-%        str2double(get(hObject,'String')) returns contents of edit2 as a double
+% Hints: get(hObject,'String') returns contents of acceleracion_puntos as text
+%        str2double(get(hObject,'String')) returns contents of acceleracion_puntos as a double
 
 
 % --- Executes during object creation, after setting all properties.
-function edit2_CreateFcn(hObject, eventdata, handles)
-% hObject    handle to edit2 (see GCBO)
+function acceleracion_puntos_CreateFcn(hObject, eventdata, handles)
+% hObject    handle to acceleracion_puntos (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    empty - handles not created until after all CreateFcns called
 
@@ -363,18 +363,18 @@ end
 
 
 
-function edit3_Callback(hObject, eventdata, handles)
-% hObject    handle to edit3 (see GCBO)
+function frenado_puntos_Callback(hObject, eventdata, handles)
+% hObject    handle to frenado_puntos (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
 
-% Hints: get(hObject,'String') returns contents of edit3 as text
-%        str2double(get(hObject,'String')) returns contents of edit3 as a double
+% Hints: get(hObject,'String') returns contents of frenado_puntos as text
+%        str2double(get(hObject,'String')) returns contents of frenado_puntos as a double
 
 
 % --- Executes during object creation, after setting all properties.
-function edit3_CreateFcn(hObject, eventdata, handles)
-% hObject    handle to edit3 (see GCBO)
+function frenado_puntos_CreateFcn(hObject, eventdata, handles)
+% hObject    handle to frenado_puntos (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    empty - handles not created until after all CreateFcns called
 
@@ -386,18 +386,18 @@ end
 
 
 
-function edit4_Callback(hObject, eventdata, handles)
-% hObject    handle to edit4 (see GCBO)
+function giro_puntos_Callback(hObject, eventdata, handles)
+% hObject    handle to giro_puntos (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
 
-% Hints: get(hObject,'String') returns contents of edit4 as text
-%        str2double(get(hObject,'String')) returns contents of edit4 as a double
+% Hints: get(hObject,'String') returns contents of giro_puntos as text
+%        str2double(get(hObject,'String')) returns contents of giro_puntos as a double
 
 
 % --- Executes during object creation, after setting all properties.
-function edit4_CreateFcn(hObject, eventdata, handles)
-% hObject    handle to edit4 (see GCBO)
+function giro_puntos_CreateFcn(hObject, eventdata, handles)
+% hObject    handle to giro_puntos (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    empty - handles not created until after all CreateFcns called
 
@@ -409,18 +409,18 @@ end
 
 
 
-function edit5_Callback(hObject, eventdata, handles)
-% hObject    handle to edit5 (see GCBO)
+function accidente_puntos_Callback(hObject, eventdata, handles)
+% hObject    handle to accidente_puntos (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
 
-% Hints: get(hObject,'String') returns contents of edit5 as text
-%        str2double(get(hObject,'String')) returns contents of edit5 as a double
+% Hints: get(hObject,'String') returns contents of accidente_puntos as text
+%        str2double(get(hObject,'String')) returns contents of accidente_puntos as a double
 
 
 % --- Executes during object creation, after setting all properties.
-function edit5_CreateFcn(hObject, eventdata, handles)
-% hObject    handle to edit5 (see GCBO)
+function accidente_puntos_CreateFcn(hObject, eventdata, handles)
+% hObject    handle to accidente_puntos (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    empty - handles not created until after all CreateFcns called
 
@@ -432,18 +432,18 @@ end
 
 
 
-function edit6_Callback(hObject, eventdata, handles)
-% hObject    handle to edit6 (see GCBO)
+function ralenti_puntos_Callback(hObject, eventdata, handles)
+% hObject    handle to ralenti_puntos (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
 
-% Hints: get(hObject,'String') returns contents of edit6 as text
-%        str2double(get(hObject,'String')) returns contents of edit6 as a double
+% Hints: get(hObject,'String') returns contents of ralenti_puntos as text
+%        str2double(get(hObject,'String')) returns contents of ralenti_puntos as a double
 
 
 % --- Executes during object creation, after setting all properties.
-function edit6_CreateFcn(hObject, eventdata, handles)
-% hObject    handle to edit6 (see GCBO)
+function ralenti_puntos_CreateFcn(hObject, eventdata, handles)
+% hObject    handle to ralenti_puntos (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    empty - handles not created until after all CreateFcns called
 
@@ -541,15 +541,45 @@ function checkbox2_Callback(hObject, eventdata, handles)
 % Hint: get(hObject,'Value') returns toggle state of checkbox2
 
 
-% --- Executes on button press in pushbutton1.
-function pushbutton1_Callback(hObject, eventdata, handles)
-% hObject    handle to pushbutton1 (see GCBO)
+% --- Executes on button press in calcular.
+function calcular_Callback(hObject, eventdata, handles)
+% hObject    handle to calcular (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
-
+acceleracion_var = str2num(get(handles.aceleracion_text,'String'))*str2num(get(handles.acceleracion_puntos,'String'))
+frenado_var = str2num(get(handles.frenado_text,'String'))*str2num(get(handles.frenado_puntos,'String'))
+giro_var = str2num(get(handles.giro_text,'String'))*str2num(get(handles.giro_puntos,'String'))
+accidente_var = str2num(get(handles.accidente_text,'String'))*str2num(get(handles.accidente_puntos,'String'))
+ralenti_var = str2num(get(handles.ralenti_text,'String'))*str2num(get(handles.ralenti_puntos,'String'))
+velocidad_var = str2num(get(handles.velocidad_text,'String'))*str2num(get(handles.velocidad_puntos,'String'))
+puntaje_total = acceleracion_var + frenado_var + giro_var +accidente_var + ralenti_var + velocidad_var
+set(handles.puntaje_total,'String',puntaje_total)
 
 % --- Executes on button press in pushbutton3.
 function pushbutton3_Callback(hObject, eventdata, handles)
 % hObject    handle to pushbutton3 (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
+
+
+
+function puntaje_total_Callback(hObject, eventdata, handles)
+% hObject    handle to puntaje_total (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+
+% Hints: get(hObject,'String') returns contents of puntaje_total as text
+%        str2double(get(hObject,'String')) returns contents of puntaje_total as a double
+
+
+% --- Executes during object creation, after setting all properties.
+function puntaje_total_CreateFcn(hObject, eventdata, handles)
+% hObject    handle to puntaje_total (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    empty - handles not created until after all CreateFcns called
+
+% Hint: edit controls usually have a white background on Windows.
+%       See ISPC and COMPUTER.
+if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
+    set(hObject,'BackgroundColor','white');
+end
