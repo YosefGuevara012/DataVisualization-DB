@@ -463,6 +463,14 @@ function valores_base_Callback(hObject, eventdata, handles)
 % Hints: contents = cellstr(get(hObject,'String')) returns valores_base contents as cell array
 %        contents{get(hObject,'Value')} returns selected item from valores_base
 
+if get(hObject,'Value') == 1
+   set(handles.distancia_del_viaje,'Enable','on')
+   set(handles.tiempo_conducido,'Enable','off')
+elseif get(hObject,'Value') == 2
+   set(handles.distancia_del_viaje,'Enable','off')
+   set(handles.tiempo_conducido,'Enable','on')
+end
+
 
 % --- Executes during object creation, after setting all properties.
 function valores_base_CreateFcn(hObject, eventdata, handles)
@@ -573,7 +581,7 @@ end
 % Calculo de los resultados
 
 
-puntaje_total = 9.05
+% puntaje_total = 9.05
 porcentaje_del_viaje = ((puntos_max_permitidos_viaje - puntaje_total)/puntos_max_permitidos_viaje)*100
 estrellas_del_viaje = (porcentaje_del_viaje * 5)/ 100
 
@@ -714,10 +722,12 @@ promedio_km_conducidos= str2num(get(handles.kilometros_conducidos_text,'String')
 coeficiente = puntos_max_permitidos/promedio_km_conducidos
 if get(handles.selector_fijos,'Value') == 1
    puntos_max_permitidos_viaje = coeficiente * round(get(hObject,'Value'),0)
+   set(handles.pts_max_permitidos_txt,'String',puntos_max_permitidos_viaje)
    puntuacion = (1 - (str2num(get(handles.puntos_fijos,'String'))./puntos_max_permitidos_viaje))*5
    set(handles.resultado_puntuacion,'String',puntuacion)
 elseif get(handles.selector_fijos,'Value') == 2
    puntos_max_permitidos_viaje = coeficiente * str2num(get(handles.distancia_fija,'String'))
+   set(handles.pts_max_permitidos_txt,'String',puntos_max_permitidos_viaje)
    puntuacion = (1 - (round(get(hObject,'Value'),0) / puntos_max_permitidos_viaje))*5
    set(handles.resultado_puntuacion,'String',puntuacion)
 end    
