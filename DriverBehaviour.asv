@@ -595,13 +595,16 @@ promedio_hr_conducidas= str2num(get(handles.horas_conducidas_text,'String'))
 promedio_km_conducidos= str2num(get(handles.kilometros_conducidos_text,'String'))
 
 % variable no fija
-distancia = [0:1:50]
+variable = [0:1:50]
 
 % calculo de la grafica
+if get(handles.XXXX,'Value')
+    
+elseif
 
+end
 coeficiente = puntos_max_permitidos/promedio_km_conducidos
-
-puntos_max_permitidos_viaje = coeficiente * distancia
+puntos_max_permitidos_viaje = coeficiente * variable
 
 puntuacion = (str2num(get(handles.puntos_fijos,'String'))./puntos_max_permitidos_viaje)
 puntuacion = 1 - puntuacion
@@ -704,23 +707,21 @@ function slider14_Callback(hObject, eventdata, handles)
 % Hints: get(hObject,'Value') returns position of slider
 %        get(hObject,'Min') and get(hObject,'Max') to determine range of slider
 
+set(handles.valores_fijos,'String',round(get(hObject,'Value'),0))
 % Captura de constantes para el coeficiente
 puntos_max_permitidos= str2num(get(handles.puntos_max_text,'String'))
 promedio_hr_conducidas= str2num(get(handles.horas_conducidas_text,'String'))
 promedio_km_conducidos= str2num(get(handles.kilometros_conducidos_text,'String'))
 
 
-if get(hObject,'Value') == 1
-% calculo de la grafica
-
-coeficiente = puntos_max_permitidos/promedio_km_conducidos
-puntos_max_permitidos_viaje = coeficiente * distancia
-
-puntuacion = (str2num(get(handles.puntos_fijos,'String'))./puntos_max_permitidos_viaje)
-puntuacion = 1 - puntuacion
-puntuacion = puntuacion*5
-elseif get(hObject,'Value') == 2
-    set(handles.unidades,'String','Puntos')
+if get(handles.selector_fijos,'Value') == 1
+    % calculo de la grafica
+    coeficiente = puntos_max_permitidos/promedio_km_conducidos
+    puntos_max_permitidos_viaje = coeficiente * round(get(hObject,'Value'),0)
+    puntuacion = (1- (str2num(get(handles.puntos_fijos,'String'))/puntos_max_permitidos_viaje))*5
+    set(handles.resultado_puntuacion,'String',puntuacion)
+elseif get(handles.selector_fijos,'Value') == 2
+    
 end
 
 % --- Executes during object creation, after setting all properties.
@@ -745,8 +746,12 @@ function selector_fijos_Callback(hObject, eventdata, handles)
 %        contents{get(hObject,'Value')} returns selected item from selector_fijos
 if get(hObject,'Value') == 1
     set(handles.unidades,'String','Km')
+    set(handles.puntos_fijos,'Enable','on')
+    set(handles.distancia_fija,'Enable','off')
 elseif get(hObject,'Value') == 2
     set(handles.unidades,'String','Puntos')
+    set(handles.distancia_fija,'Enable','on')
+    set(handles.puntos_fijos,'Enable','off')
 end
 
 % --- Executes during object creation, after setting all properties.

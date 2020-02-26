@@ -595,17 +595,18 @@ promedio_hr_conducidas= str2num(get(handles.horas_conducidas_text,'String'))
 promedio_km_conducidos= str2num(get(handles.kilometros_conducidos_text,'String'))
 
 % variable no fija
-distancia = [0:1:50]
-
-% calculo de la grafica
-
+variable = [0:1:50]
+% calculo coeficiente
 coeficiente = puntos_max_permitidos/promedio_km_conducidos
 
-puntos_max_permitidos_viaje = coeficiente * distancia
-
-puntuacion = (str2num(get(handles.puntos_fijos,'String'))./puntos_max_permitidos_viaje)
-puntuacion = 1 - puntuacion
-puntuacion = puntuacion*5
+% calculo de la grafica
+if get(handles.selector_fijos,'Value') == 1
+   puntos_max_permitidos_viaje = coeficiente * variable
+   puntuacion = (1 - (str2num(get(handles.puntos_fijos,'String'))./puntos_max_permitidos_viaje))*5 
+elseif get(handles.selector_fijos,'Value') == 2
+   puntos_max_permitidos_viaje = coeficiente * str2num(get(handles.distancia_fija,'String'))
+   puntuacion = (1 - (variable / puntos_max_permitidos_viaje))*5  
+end
 
 
 for i = 1:50
@@ -623,7 +624,7 @@ ylim([0 5])
 ylabel('Estrellas (0-5)')
 xlabel('Distancia en km')
 grid
-plot(distancia,puntuacion)
+plot(variable,puntuacion)
 
 
 
@@ -710,16 +711,17 @@ puntos_max_permitidos= str2num(get(handles.puntos_max_text,'String'))
 promedio_hr_conducidas= str2num(get(handles.horas_conducidas_text,'String'))
 promedio_km_conducidos= str2num(get(handles.kilometros_conducidos_text,'String'))
 
-
+coeficiente = puntos_max_permitidos/promedio_km_conducidos
 if get(handles.selector_fijos,'Value') == 1
-    % calculo de la grafica
-    coeficiente = puntos_max_permitidos/promedio_km_conducidos
-    puntos_max_permitidos_viaje = coeficiente * round(get(hObject,'Value'),0)
-    puntuacion = (1- (str2num(get(handles.puntos_fijos,'String'))/puntos_max_permitidos_viaje))*5
-    set(handles.resultado_puntuacion,'String',puntuacion)
+   puntos_max_permitidos_viaje = coeficiente * round(get(hObject,'Value'),0)
+   puntuacion = (1 - (str2num(get(handles.puntos_fijos,'String'))./puntos_max_permitidos_viaje))*5
+   set(handles.resultado_puntuacion,'String',puntuacion)
 elseif get(handles.selector_fijos,'Value') == 2
-    
-end
+   puntos_max_permitidos_viaje = coeficiente * str2num(get(handles.distancia_fija,'String'))
+   puntuacion = (1 - (round(get(hObject,'Value'),0) / puntos_max_permitidos_viaje))*5
+   set(handles.resultado_puntuacion,'String',puntuacion)
+end    
+
 
 % --- Executes during object creation, after setting all properties.
 function slider14_CreateFcn(hObject, eventdata, handles)
