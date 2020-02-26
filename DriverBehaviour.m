@@ -22,7 +22,7 @@ function varargout = DriverBehaviour(varargin)
 
 % Edit the above text to modify the response to help DriverBehaviour
 
-% Last Modified by GUIDE v2.5 25-Feb-2020 18:18:38
+% Last Modified by GUIDE v2.5 26-Feb-2020 00:12:52
 
 % Begin initialization code - DO NOT EDIT
 gui_Singleton = 1;
@@ -54,6 +54,30 @@ function DriverBehaviour_OpeningFcn(hObject, eventdata, handles, varargin)
 
 % Choose default command line output for DriverBehaviour
 handles.output = hObject;
+% configuracion inicial
+
+%configuracion de sliders
+set(handles.slider_acceleracion,'Value',5)
+set(handles.aceleracion_text,'String',5)
+set(handles.slider_frenado,'Value',5)
+set(handles.frenado_text,'String',5)
+set(handles.slider_giro,'Value',5)
+set(handles.giro_text,'String',5)
+set(handles.slider_accidente,'Value',10000)
+set(handles.accidente_text,'String',10000)
+set(handles.slider_ralenti,'Value',1)
+set(handles.ralenti_text,'String',1)
+set(handles.slider_velocidad,'Value',2)
+set(handles.velocidad_text,'String',2)
+set(handles.slider_pts_max_per,'Value',1100)
+set(handles.puntos_max_text,'String',1100)
+set(handles.slider_prom_h_cond,'Value',29)
+set(handles.horas_conducidas_text,'String',29)
+set(handles.slider_prom_km_cond,'Value',950)
+set(handles.kilometros_conducidos_text,'String',950)
+% configuracion popupmenus
+set(handles.tiempo_conducido,'Enable','off')
+set(handles.distancia_fija,'Enable','off')
 
 % Update handles structure
 guidata(hObject, handles);
@@ -74,18 +98,19 @@ varargout{1} = handles.output;
 
 
 % --- Executes on slider movement.
-function slider11_Callback(hObject, eventdata, handles)
-% hObject    handle to slider11 (see GCBO)
+function slider_pts_max_per_Callback(hObject, eventdata, handles)
+% hObject    handle to slider_pts_max_per (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
 
 % Hints: get(hObject,'Value') returns position of slider
 %        get(hObject,'Min') and get(hObject,'Max') to determine range of slider
 set(handles.puntos_max_text,'String',round(get(hObject,'Value'),0))
+set(handles.puntos_max_text,'String',round(get(hObject,'Value'),0))
 
 % --- Executes during object creation, after setting all properties.
-function slider11_CreateFcn(hObject, eventdata, handles)
-% hObject    handle to slider11 (see GCBO)
+function slider_pts_max_per_CreateFcn(hObject, eventdata, handles)
+% hObject    handle to slider_pts_max_per (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    empty - handles not created until after all CreateFcns called
 
@@ -96,8 +121,8 @@ end
 
 
 % --- Executes on slider movement.
-function slider12_Callback(hObject, eventdata, handles)
-% hObject    handle to slider12 (see GCBO)
+function slider_prom_h_cond_Callback(hObject, eventdata, handles)
+% hObject    handle to slider_prom_h_cond (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
 
@@ -106,8 +131,8 @@ function slider12_Callback(hObject, eventdata, handles)
 set(handles.horas_conducidas_text,'String',round(get(hObject,'Value'),0))
 
 % --- Executes during object creation, after setting all properties.
-function slider12_CreateFcn(hObject, eventdata, handles)
-% hObject    handle to slider12 (see GCBO)
+function slider_prom_h_cond_CreateFcn(hObject, eventdata, handles)
+% hObject    handle to slider_prom_h_cond (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    empty - handles not created until after all CreateFcns called
 
@@ -118,8 +143,8 @@ end
 
 
 % --- Executes on slider movement.
-function slider13_Callback(hObject, eventdata, handles)
-% hObject    handle to slider13 (see GCBO)
+function slider_prom_km_cond_Callback(hObject, eventdata, handles)
+% hObject    handle to slider_prom_km_cond (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
 
@@ -128,8 +153,8 @@ function slider13_Callback(hObject, eventdata, handles)
 set(handles.kilometros_conducidos_text,'String',round(get(hObject,'Value'),0))
 
 % --- Executes during object creation, after setting all properties.
-function slider13_CreateFcn(hObject, eventdata, handles)
-% hObject    handle to slider13 (see GCBO)
+function slider_prom_km_cond_CreateFcn(hObject, eventdata, handles)
+% hObject    handle to slider_prom_km_cond (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    empty - handles not created until after all CreateFcns called
 
@@ -140,8 +165,8 @@ end
 
 
 % --- Executes on slider movement.
-function slider3_Callback(hObject, eventdata, handles)
-% hObject    handle to slider3 (see GCBO)
+function slider_acceleracion_Callback(hObject, eventdata, handles)
+% hObject    handle to slider_acceleracion (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
 
@@ -150,8 +175,8 @@ function slider3_Callback(hObject, eventdata, handles)
 set(handles.aceleracion_text,'String',round(get(hObject,'Value'),0))
 
 % --- Executes during object creation, after setting all properties.
-function slider3_CreateFcn(hObject, eventdata, handles)
-% hObject    handle to slider3 (see GCBO)
+function slider_acceleracion_CreateFcn(hObject, eventdata, handles)
+% hObject    handle to slider_acceleracion (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    empty - handles not created until after all CreateFcns called
 
@@ -162,8 +187,8 @@ end
 
 
 % --- Executes on slider movement.
-function slider4_Callback(hObject, eventdata, handles)
-% hObject    handle to slider4 (see GCBO)
+function slider_frenado_Callback(hObject, eventdata, handles)
+% hObject    handle to slider_frenado (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
 
@@ -173,8 +198,8 @@ function slider4_Callback(hObject, eventdata, handles)
 set(handles.frenado_text,'String',round(get(hObject,'Value'),0))
 
 % --- Executes during object creation, after setting all properties.
-function slider4_CreateFcn(hObject, eventdata, handles)
-% hObject    handle to slider4 (see GCBO)
+function slider_frenado_CreateFcn(hObject, eventdata, handles)
+% hObject    handle to slider_frenado (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    empty - handles not created until after all CreateFcns called
 
@@ -185,8 +210,8 @@ end
 
 
 % --- Executes on slider movement.
-function slider5_Callback(hObject, eventdata, handles)
-% hObject    handle to slider5 (see GCBO)
+function slider_giro_Callback(hObject, eventdata, handles)
+% hObject    handle to slider_giro (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
 
@@ -195,8 +220,8 @@ function slider5_Callback(hObject, eventdata, handles)
 set(handles.giro_text,'String',round(get(hObject,'Value'),0))
 
 % --- Executes during object creation, after setting all properties.
-function slider5_CreateFcn(hObject, eventdata, handles)
-% hObject    handle to slider5 (see GCBO)
+function slider_giro_CreateFcn(hObject, eventdata, handles)
+% hObject    handle to slider_giro (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    empty - handles not created until after all CreateFcns called
 
@@ -207,8 +232,8 @@ end
 
 
 % --- Executes on slider movement.
-function slider6_Callback(hObject, eventdata, handles)
-% hObject    handle to slider6 (see GCBO)
+function slider_accidente_Callback(hObject, eventdata, handles)
+% hObject    handle to slider_accidente (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
 
@@ -217,8 +242,8 @@ function slider6_Callback(hObject, eventdata, handles)
 set(handles.accidente_text,'String',round(get(hObject,'Value'),0))
 
 % --- Executes during object creation, after setting all properties.
-function slider6_CreateFcn(hObject, eventdata, handles)
-% hObject    handle to slider6 (see GCBO)
+function slider_accidente_CreateFcn(hObject, eventdata, handles)
+% hObject    handle to slider_accidente (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    empty - handles not created until after all CreateFcns called
 
@@ -229,8 +254,8 @@ end
 
 
 % --- Executes on slider movement.
-function slider7_Callback(hObject, eventdata, handles)
-% hObject    handle to slider7 (see GCBO)
+function slider_ralenti_Callback(hObject, eventdata, handles)
+% hObject    handle to slider_ralenti (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
 
@@ -239,8 +264,8 @@ function slider7_Callback(hObject, eventdata, handles)
 set(handles.ralenti_text,'String',round(get(hObject,'Value'),0))
 
 % --- Executes during object creation, after setting all properties.
-function slider7_CreateFcn(hObject, eventdata, handles)
-% hObject    handle to slider7 (see GCBO)
+function slider_ralenti_CreateFcn(hObject, eventdata, handles)
+% hObject    handle to slider_ralenti (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    empty - handles not created until after all CreateFcns called
 
@@ -251,8 +276,8 @@ end
 
 
 % --- Executes on slider movement.
-function slider8_Callback(hObject, eventdata, handles)
-% hObject    handle to slider8 (see GCBO)
+function slider_velocidad_Callback(hObject, eventdata, handles)
+% hObject    handle to slider_velocidad (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
 
@@ -261,8 +286,8 @@ function slider8_Callback(hObject, eventdata, handles)
 set(handles.velocidad_text,'String',round(get(hObject,'Value'),0))
 
 % --- Executes during object creation, after setting all properties.
-function slider8_CreateFcn(hObject, eventdata, handles)
-% hObject    handle to slider8 (see GCBO)
+function slider_velocidad_CreateFcn(hObject, eventdata, handles)
+% hObject    handle to slider_velocidad (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    empty - handles not created until after all CreateFcns called
 
@@ -578,8 +603,9 @@ elseif get(handles.valores_base,'Value') == 2
     puntos_max_permitidos_viaje = coeficiente * str2num(get(handles.tiempo_conducido,'String'))
 end  
 
-% Calculo de los resultados
 
+% Calculo de los resultados
+set(handles.pt_max_permitidos_text,'String',puntos_max_permitidos_viaje)
 
 % puntaje_total = 9.05
 porcentaje_del_viaje = ((puntos_max_permitidos_viaje - puntaje_total)/puntos_max_permitidos_viaje)*100
