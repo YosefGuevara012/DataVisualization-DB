@@ -629,17 +629,27 @@ promedio_hr_conducidas= str2num(get(handles.horas_conducidas_text,'String'))
 promedio_km_conducidos= str2num(get(handles.kilometros_conducidos_text,'String'))
 
 % variable no fija
-variable = [0:1:50]
+variable = [0:50]
 % calculo coeficiente
-coeficiente = puntos_max_permitidos/promedio_km_conducidos
+
 
 % calculo de la grafica
 if get(handles.selector_fijos,'Value') == 1
+   coeficiente = puntos_max_permitidos/promedio_km_conducidos
    puntos_max_permitidos_viaje = coeficiente * variable
    puntuacion = (1 - (str2num(get(handles.puntos_fijos,'String'))./puntos_max_permitidos_viaje))*5 
 elseif get(handles.selector_fijos,'Value') == 2
+   coeficiente = puntos_max_permitidos/promedio_km_conducidos
    puntos_max_permitidos_viaje = coeficiente * str2num(get(handles.distancia_fija,'String'))
-   puntuacion = (1 - (variable / puntos_max_permitidos_viaje))*5  
+   puntuacion = (1 - (variable / puntos_max_permitidos_viaje))*5
+elseif get(handles.selector_fijos,'Value') == 3
+   coeficiente = puntos_max_permitidos/promedio_hr_conducidas
+   puntos_max_permitidos_viaje = coeficiente * variable
+   puntuacion = (1 - (str2num(get(handles.puntos_fijos,'String'))./puntos_max_permitidos_viaje))*5 
+elseif get(handles.selector_fijos,'Value') == 4
+   coeficiente = puntos_max_permitidos/promedio_hr_conducidas 
+   puntos_max_permitidos_viaje = coeficiente * str2num(get(handles.distancia_fija,'String'))
+   puntuacion = (1 - (variable / puntos_max_permitidos_viaje))*5    
 end
 
 
@@ -745,18 +755,39 @@ puntos_max_permitidos= str2num(get(handles.puntos_max_text,'String'))
 promedio_hr_conducidas= str2num(get(handles.horas_conducidas_text,'String'))
 promedio_km_conducidos= str2num(get(handles.kilometros_conducidos_text,'String'))
 
-coeficiente = puntos_max_permitidos/promedio_km_conducidos
+% calculo
+
 if get(handles.selector_fijos,'Value') == 1
+   coeficiente = puntos_max_permitidos/promedio_km_conducidos
    puntos_max_permitidos_viaje = coeficiente * round(get(hObject,'Value'),0)
-   set(handles.pts_max_permitidos_txt,'String',puntos_max_permitidos_viaje)
-   puntuacion = (1 - (str2num(get(handles.puntos_fijos,'String'))./puntos_max_permitidos_viaje))*5
-   set(handles.resultado_puntuacion,'String',puntuacion)
+   puntuacion = (1 - (str2num(get(handles.puntos_fijos,'String'))./puntos_max_permitidos_viaje))*5 
 elseif get(handles.selector_fijos,'Value') == 2
+   coeficiente = puntos_max_permitidos/promedio_km_conducidos
    puntos_max_permitidos_viaje = coeficiente * str2num(get(handles.distancia_fija,'String'))
-   set(handles.pts_max_permitidos_txt,'String',puntos_max_permitidos_viaje)
    puntuacion = (1 - (round(get(hObject,'Value'),0) / puntos_max_permitidos_viaje))*5
-   set(handles.resultado_puntuacion,'String',puntuacion)
-end    
+elseif get(handles.selector_fijos,'Value') == 3
+   coeficiente = puntos_max_permitidos/promedio_hr_conducidas
+   puntos_max_permitidos_viaje = coeficiente * round(get(hObject,'Value'),0)
+   puntuacion = (1 - (str2num(get(handles.puntos_fijos,'String'))./puntos_max_permitidos_viaje))*5 
+elseif get(handles.selector_fijos,'Value') == 4
+   coeficiente = puntos_max_permitidos/promedio_hr_conducidas 
+   puntos_max_permitidos_viaje = coeficiente * str2num(get(handles.distancia_fija,'String'))
+   puntuacion = (1 - (round(get(hObject,'Value'),0) / puntos_max_permitidos_viaje))*5
+end
+% Exportar resultado
+set(handles.pts_max_permitidos_txt,'String',puntos_max_permitidos_viaje)
+set(handles.resultado_puntuacion,'String',puntuacion)
+
+% coeficiente = puntos_max_permitidos/promedio_km_conducidos
+% if get(handles.selector_fijos,'Value') == 1
+%    puntos_max_permitidos_viaje = coeficiente * round(get(hObject,'Value'),0)
+%    puntuacion = (1 - (str2num(get(handles.puntos_fijos,'String'))./puntos_max_permitidos_viaje))*5
+%    set(handles.resultado_puntuacion,'String',puntuacion)
+% elseif get(handles.selector_fijos,'Value') == 2
+%    puntos_max_permitidos_viaje = coeficiente * str2num(get(handles.distancia_fija,'String')) 
+%    puntuacion = (1 - (round(get(hObject,'Value'),0) / puntos_max_permitidos_viaje))*5
+%    set(handles.resultado_puntuacion,'String',puntuacion)
+% end    
 
 
 % --- Executes during object creation, after setting all properties.
@@ -780,13 +811,25 @@ function selector_fijos_Callback(hObject, eventdata, handles)
 % Hints: contents = cellstr(get(hObject,'String')) returns selector_fijos contents as cell array
 %        contents{get(hObject,'Value')} returns selected item from selector_fijos
 if get(hObject,'Value') == 1
+    set(handles.variable_text,'String','Distancia fija (Km):')
     set(handles.unidades,'String','Km')
     set(handles.puntos_fijos,'Enable','on')
     set(handles.distancia_fija,'Enable','off')
 elseif get(hObject,'Value') == 2
+    set(handles.variable_text,'String','Distancia fija (Km):')
     set(handles.unidades,'String','Puntos')
-    set(handles.distancia_fija,'Enable','on')
     set(handles.puntos_fijos,'Enable','off')
+    set(handles.distancia_fija,'Enable','on')
+elseif get(hObject,'Value') == 3
+    set(handles.variable_text,'String','Tiempo fijo (h):')
+    set(handles.unidades,'String','horas')
+    set(handles.puntos_fijos,'Enable','on')
+    set(handles.distancia_fija,'Enable','off')
+elseif get(hObject,'Value') == 4
+    set(handles.variable_text,'String','Tiempo fijo (h):')
+    set(handles.unidades,'String','Puntos')
+    set(handles.puntos_fijos,'Enable','off')
+    set(handles.distancia_fija,'Enable','on')
 end
 
 % --- Executes during object creation, after setting all properties.
