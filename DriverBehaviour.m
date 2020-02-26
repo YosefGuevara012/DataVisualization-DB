@@ -22,7 +22,7 @@ function varargout = DriverBehaviour(varargin)
 
 % Edit the above text to modify the response to help DriverBehaviour
 
-% Last Modified by GUIDE v2.5 25-Feb-2020 13:40:07
+% Last Modified by GUIDE v2.5 25-Feb-2020 18:18:38
 
 % Begin initialization code - DO NOT EDIT
 gui_Singleton = 1;
@@ -589,15 +589,6 @@ function graficar_Callback(hObject, eventdata, handles)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
 
-% paramteros del Axes
-axes(handles.axes1)
-title('Resultado de la clificacion por estrellas')
-xlim([0 50])
-ylim([0 5])
-ylabel('Estrellas')
-xlabel('Distancia en km')
-grid
-
 % Captura de constantes para el coeficiente
 puntos_max_permitidos= str2num(get(handles.puntos_max_text,'String'))
 promedio_hr_conducidas= str2num(get(handles.horas_conducidas_text,'String'))
@@ -621,7 +612,17 @@ for i = 1:50
     if puntuacion(i) <= 0
        puntuacion(i) = 0
     end    
-end    
+end   
+
+% paramteros del Axes
+
+axes(handles.axes1)
+title('Resultado de la clificacion por estrellas')
+xlim([0 50])
+ylim([0 5])
+ylabel('Estrellas (0-5)')
+xlabel('Distancia en km')
+grid
 plot(distancia,puntuacion)
 
 
@@ -665,6 +666,98 @@ function puntos_fijos_CreateFcn(hObject, eventdata, handles)
 % handles    empty - handles not created until after all CreateFcns called
 
 % Hint: edit controls usually have a white background on Windows.
+%       See ISPC and COMPUTER.
+if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
+    set(hObject,'BackgroundColor','white');
+end
+
+
+
+function distancia_fija_Callback(hObject, eventdata, handles)
+% hObject    handle to distancia_fija (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+
+% Hints: get(hObject,'String') returns contents of distancia_fija as text
+%        str2double(get(hObject,'String')) returns contents of distancia_fija as a double
+
+
+% --- Executes during object creation, after setting all properties.
+function distancia_fija_CreateFcn(hObject, eventdata, handles)
+% hObject    handle to distancia_fija (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    empty - handles not created until after all CreateFcns called
+
+% Hint: edit controls usually have a white background on Windows.
+%       See ISPC and COMPUTER.
+if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
+    set(hObject,'BackgroundColor','white');
+end
+
+
+% --- Executes on slider movement.
+function slider14_Callback(hObject, eventdata, handles)
+% hObject    handle to slider14 (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+
+% Hints: get(hObject,'Value') returns position of slider
+%        get(hObject,'Min') and get(hObject,'Max') to determine range of slider
+
+set(handles.valores_fijos,'String',round(get(hObject,'Value'),0))
+% Captura de constantes para el coeficiente
+puntos_max_permitidos= str2num(get(handles.puntos_max_text,'String'))
+promedio_hr_conducidas= str2num(get(handles.horas_conducidas_text,'String'))
+promedio_km_conducidos= str2num(get(handles.kilometros_conducidos_text,'String'))
+
+
+if get(handles.selector_fijos,'Value') == 1
+    % calculo de la grafica
+    coeficiente = puntos_max_permitidos/promedio_km_conducidos
+    puntos_max_permitidos_viaje = coeficiente * round(get(hObject,'Value'),0)
+    puntuacion = (1- (str2num(get(handles.puntos_fijos,'String'))/puntos_max_permitidos_viaje))*5
+    set(handles.resultado_puntuacion,'String',puntuacion)
+elseif get(handles.selector_fijos,'Value') == 2
+    
+end
+
+% --- Executes during object creation, after setting all properties.
+function slider14_CreateFcn(hObject, eventdata, handles)
+% hObject    handle to slider14 (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    empty - handles not created until after all CreateFcns called
+
+% Hint: slider controls usually have a light gray background.
+if isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
+    set(hObject,'BackgroundColor',[.9 .9 .9]);
+end
+
+
+% --- Executes on selection change in selector_fijos.
+function selector_fijos_Callback(hObject, eventdata, handles)
+% hObject    handle to selector_fijos (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+
+% Hints: contents = cellstr(get(hObject,'String')) returns selector_fijos contents as cell array
+%        contents{get(hObject,'Value')} returns selected item from selector_fijos
+if get(hObject,'Value') == 1
+    set(handles.unidades,'String','Km')
+    set(handles.puntos_fijos,'Enable','on')
+    set(handles.distancia_fija,'Enable','off')
+elseif get(hObject,'Value') == 2
+    set(handles.unidades,'String','Puntos')
+    set(handles.distancia_fija,'Enable','on')
+    set(handles.puntos_fijos,'Enable','off')
+end
+
+% --- Executes during object creation, after setting all properties.
+function selector_fijos_CreateFcn(hObject, eventdata, handles)
+% hObject    handle to selector_fijos (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    empty - handles not created until after all CreateFcns called
+
+% Hint: popupmenu controls usually have a white background on Windows.
 %       See ISPC and COMPUTER.
 if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
     set(hObject,'BackgroundColor','white');
