@@ -629,7 +629,7 @@ promedio_hr_conducidas= str2num(get(handles.horas_conducidas_text,'String'))
 promedio_km_conducidos= str2num(get(handles.kilometros_conducidos_text,'String'))
 
 % variable no fija
-variable = [0:50]
+variable = [0:100]
 % calculo coeficiente
 
 
@@ -637,23 +637,27 @@ variable = [0:50]
 if get(handles.selector_fijos,'Value') == 1
    coeficiente = puntos_max_permitidos/promedio_km_conducidos
    puntos_max_permitidos_viaje = coeficiente * variable
-   puntuacion = (1 - (str2num(get(handles.puntos_fijos,'String'))./puntos_max_permitidos_viaje))*5 
+   puntuacion = (1 - (str2num(get(handles.puntos_fijos,'String'))./puntos_max_permitidos_viaje))*5
+   string_x_label='Distancia en Km'
 elseif get(handles.selector_fijos,'Value') == 2
    coeficiente = puntos_max_permitidos/promedio_km_conducidos
    puntos_max_permitidos_viaje = coeficiente * str2num(get(handles.distancia_fija,'String'))
    puntuacion = (1 - (variable / puntos_max_permitidos_viaje))*5
+   string_x_label='Puntaje'
 elseif get(handles.selector_fijos,'Value') == 3
    coeficiente = puntos_max_permitidos/promedio_hr_conducidas
    puntos_max_permitidos_viaje = coeficiente * variable
-   puntuacion = (1 - (str2num(get(handles.puntos_fijos,'String'))./puntos_max_permitidos_viaje))*5 
+   puntuacion = (1 - (str2num(get(handles.puntos_fijos,'String'))./puntos_max_permitidos_viaje))*5
+   string_x_label='Tiempo en horas'
 elseif get(handles.selector_fijos,'Value') == 4
    coeficiente = puntos_max_permitidos/promedio_hr_conducidas 
    puntos_max_permitidos_viaje = coeficiente * str2num(get(handles.distancia_fija,'String'))
-   puntuacion = (1 - (variable / puntos_max_permitidos_viaje))*5    
+   puntuacion = (1 - (variable / puntos_max_permitidos_viaje))*5
+   string_x_label='Puntaje'
 end
 
 
-for i = 1:50
+for i = 1:100
     if puntuacion(i) <= 0
        puntuacion(i) = 0
     end    
@@ -662,13 +666,13 @@ end
 % paramteros del Axes
 
 axes(handles.axes1)
-title('Resultado de la clificacion por estrellas')
-xlim([0 50])
+plot(variable,puntuacion)
+title('Resultado de la clificación por estrellas (*).')
+xlim([0 100])
 ylim([0 5])
 ylabel('Estrellas (0-5)')
-xlabel('Distancia en km')
-grid
-plot(variable,puntuacion)
+xlabel(string_x_label)
+grid on
 
 
 
