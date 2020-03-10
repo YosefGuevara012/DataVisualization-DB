@@ -765,6 +765,7 @@ promedio_km_conducidos= str2num(get(handles.kilometros_conducidos_text,'String')
 
 if get(handles.usar_PDC,'Value')== 0
    puntos_fijos_var = str2num(get(handles.puntos_fijos,'String'))
+   set(handle.
 elseif get(handles.usar_PDC,'Value')== 1
    puntos_fijos_var = str2num(get(handles.puntaje_total,'String'))
 end
@@ -827,7 +828,6 @@ if get(hObject,'Value') == 1
     set(handles.unidades,'String','Km')
     set(handles.puntos_fijos,'Enable','on')
     set(handles.usar_PDC,'Enable','on')
-    set(handles.usar_PDC,'Value',0)
     set(handles.distancia_fija,'Enable','off')
 elseif get(hObject,'Value') == 2
     set(handles.variable_text,'String','Distancia fija (Km):')
@@ -840,7 +840,6 @@ elseif get(hObject,'Value') == 3
     set(handles.unidades,'String','horas')
     set(handles.puntos_fijos,'Enable','on')
     set(handles.usar_PDC,'Enable','on')
-    set(handles.usar_PDC,'Value',0)
     set(handles.distancia_fija,'Enable','off')
 elseif get(hObject,'Value') == 4
     set(handles.variable_text,'String','Tiempo fijo (h):')
