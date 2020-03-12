@@ -1,25 +1,25 @@
 <deployment-project plugin="plugin.ezdeploy" plugin-version="1.0">
-  <configuration file="C:\Users\yosef\OneDrive\Documents\DataVisual\DriverBehaviour\Driver_Behaviour_Simulator.prj" location="C:\Users\yosef\OneDrive\Documents\DataVisual\DriverBehaviour" name="Driver_Behaviour_Simulator" target="target.ezdeploy.standalone" target-name="Application Compiler">
-    <param.appname>Driver_Behaviour_Simulator</param.appname>
+  <configuration file="C:\Users\yosef\OneDrive\Escritorio\as\DriverBehaviour.prj" location="C:\Users\yosef\OneDrive\Escritorio\as" name="DriverBehaviour" target="target.ezdeploy.standalone" target-name="Application Compiler">
+    <param.appname>DriverBehaviour</param.appname>
     <param.icon />
     <param.icons />
-    <param.version>1.0</param.version>
-    <param.authnamewatermark>YosefGuevara012</param.authnamewatermark>
-    <param.email />
-    <param.company />
-    <param.summary>Este es un simulador de resultados del comportamiento de conductor en la plataforma.</param.summary>
+    <param.version>1.1</param.version>
+    <param.authnamewatermark>Yosef Guevara</param.authnamewatermark>
+    <param.email>yosef@3dtracking.com</param.email>
+    <param.company>3DT</param.company>
+    <param.summary>Simulador para la calificación del conductor para el sistema 3DT</param.summary>
     <param.description />
-    <param.screenshot>${PROJECT_ROOT}\logo_DB_S.PNG</param.screenshot>
+    <param.screenshot>C:\Users\yosef\OneDrive\Documents\DataVisual\DriverBehaviour\logo_DB_1.PNG</param.screenshot>
     <param.guid />
-    <param.installpath.string>\Driver_Behaviour_Simulator\</param.installpath.string>
+    <param.installpath.string>\3DT\DriverBehaviour\</param.installpath.string>
     <param.installpath.combo>option.installpath.programfiles</param.installpath.combo>
     <param.logo />
     <param.install.notes />
     <param.target.install.notes />
-    <param.intermediate>${PROJECT_ROOT}\Driver_Behaviour_Simulator\for_testing</param.intermediate>
-    <param.files.only>${PROJECT_ROOT}\Driver_Behaviour_Simulator\for_redistribution_files_only</param.files.only>
-    <param.output>${PROJECT_ROOT}\Driver_Behaviour_Simulator\for_redistribution</param.output>
-    <param.logdir>${PROJECT_ROOT}\Driver_Behaviour_Simulator</param.logdir>
+    <param.intermediate>${PROJECT_ROOT}\DriverBehaviour\for_testing</param.intermediate>
+    <param.files.only>${PROJECT_ROOT}\DriverBehaviour\for_redistribution_files_only</param.files.only>
+    <param.output>${PROJECT_ROOT}\DriverBehaviour\for_redistribution</param.output>
+    <param.logdir>${PROJECT_ROOT}\DriverBehaviour</param.logdir>
     <param.enable.clean.build>false</param.enable.clean.build>
     <param.user.defined.mcr.options />
     <param.target.type>subtarget.standalone</param.target.type>
@@ -40,9 +40,6 @@
     <unset>
       <param.icon />
       <param.icons />
-      <param.version />
-      <param.email />
-      <param.company />
       <param.description />
       <param.guid />
       <param.installpath.string />
@@ -72,15 +69,15 @@
       <param.help.text />
     </unset>
     <fileset.main>
-      <file>${PROJECT_ROOT}\DriverBehaviour.m</file>
+      <file>C:\Users\yosef\OneDrive\Documents\DataVisual\DriverBehaviour\DriverBehaviour.m</file>
     </fileset.main>
     <fileset.resources />
     <fileset.package />
     <fileset.depfun />
     <build-deliverables>
-      <file location="${PROJECT_ROOT}\Driver_Behaviour_Simulator\for_testing" name="readme.txt" optional="true">C:\Users\yosef\OneDrive\Documents\DataVisual\DriverBehaviour\Driver_Behaviour_Simulator\for_testing\readme.txt</file>
-      <file location="${PROJECT_ROOT}\Driver_Behaviour_Simulator\for_testing" name="Driver_Behaviour_Simulator.exe" optional="false">C:\Users\yosef\OneDrive\Documents\DataVisual\DriverBehaviour\Driver_Behaviour_Simulator\for_testing\Driver_Behaviour_Simulator.exe</file>
-      <file location="${PROJECT_ROOT}\Driver_Behaviour_Simulator\for_testing" name="splash.png" optional="false">C:\Users\yosef\OneDrive\Documents\DataVisual\DriverBehaviour\Driver_Behaviour_Simulator\for_testing\splash.png</file>
+      <file location="${PROJECT_ROOT}\DriverBehaviour\for_testing" name="DriverBehaviour.exe" optional="false">C:\Users\yosef\OneDrive\Escritorio\as\DriverBehaviour\for_testing\DriverBehaviour.exe</file>
+      <file location="${PROJECT_ROOT}\DriverBehaviour\for_testing" name="splash.png" optional="false">C:\Users\yosef\OneDrive\Escritorio\as\DriverBehaviour\for_testing\splash.png</file>
+      <file location="${PROJECT_ROOT}\DriverBehaviour\for_testing" name="readme.txt" optional="true">C:\Users\yosef\OneDrive\Escritorio\as\DriverBehaviour\for_testing\readme.txt</file>
     </build-deliverables>
     <workflow />
     <matlab>

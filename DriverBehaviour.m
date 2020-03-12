@@ -634,7 +634,6 @@ promedio_km_conducidos= str2num(get(handles.kilometros_conducidos_text,'String')
 variable = [0:100]
 
 
-
 % calculo de la grafica
 if get(handles.selector_fijos,'Value') == 1
    coeficiente = puntos_max_permitidos/promedio_km_conducidos
@@ -761,18 +760,12 @@ puntos_max_permitidos= str2num(get(handles.puntos_max_text,'String'))
 promedio_hr_conducidas= str2num(get(handles.horas_conducidas_text,'String'))
 promedio_km_conducidos= str2num(get(handles.kilometros_conducidos_text,'String'))
 
-% Selector de uso de la puntuacion
 
-if get(handles.usar_PDC,'Value')== 0
-   puntos_fijos_var = str2num(get(handles.puntos_fijos,'String'))
-elseif get(handles.usar_PDC,'Value')== 1
-   puntos_fijos_var = str2num(get(handles.puntaje_total,'String'))
-end
 % calculo
 if get(handles.selector_fijos,'Value') == 1
    coeficiente = puntos_max_permitidos/promedio_km_conducidos
    puntos_max_permitidos_viaje = coeficiente * round(get(hObject,'Value'),0)
-   puntuacion = (1 - (puntos_fijos_var /puntos_max_permitidos_viaje))*5 
+   puntuacion = (1 - ((str2num(get(handles.puntos_fijos,'String'))) /puntos_max_permitidos_viaje))*5 
 elseif get(handles.selector_fijos,'Value') == 2
    coeficiente = puntos_max_permitidos/promedio_km_conducidos
    puntos_max_permitidos_viaje = coeficiente * str2num(get(handles.distancia_fija,'String'))
@@ -780,7 +773,7 @@ elseif get(handles.selector_fijos,'Value') == 2
 elseif get(handles.selector_fijos,'Value') == 3
    coeficiente = puntos_max_permitidos/promedio_hr_conducidas
    puntos_max_permitidos_viaje = coeficiente * round(get(hObject,'Value'),0)
-   puntuacion = (1 - (puntos_fijos_var /puntos_max_permitidos_viaje))*5 
+   puntuacion = (1 - ((str2num(get(handles.puntos_fijos,'String'))) /puntos_max_permitidos_viaje))*5 
 elseif get(handles.selector_fijos,'Value') == 4
    coeficiente = puntos_max_permitidos/promedio_hr_conducidas 
    puntos_max_permitidos_viaje = coeficiente * str2num(get(handles.distancia_fija,'String'))
@@ -826,27 +819,21 @@ if get(hObject,'Value') == 1
     set(handles.variable_text,'String','Distancia fija (Km):')
     set(handles.unidades,'String','Km')
     set(handles.puntos_fijos,'Enable','on')
-    set(handles.usar_PDC,'Enable','on')
-    set(handles.usar_PDC,'Value',0)
     set(handles.distancia_fija,'Enable','off')
 elseif get(hObject,'Value') == 2
     set(handles.variable_text,'String','Distancia fija (Km):')
     set(handles.unidades,'String','Puntos')
     set(handles.puntos_fijos,'Enable','off')
-    set(handles.usar_PDC,'Enable','off')
     set(handles.distancia_fija,'Enable','on')
 elseif get(hObject,'Value') == 3
     set(handles.variable_text,'String','Tiempo fijo (h):')
     set(handles.unidades,'String','horas')
     set(handles.puntos_fijos,'Enable','on')
-    set(handles.usar_PDC,'Enable','on')
-    set(handles.usar_PDC,'Value',0)
     set(handles.distancia_fija,'Enable','off')
 elseif get(hObject,'Value') == 4
     set(handles.variable_text,'String','Tiempo fijo (h):')
     set(handles.unidades,'String','Puntos')
     set(handles.puntos_fijos,'Enable','off')
-    set(handles.usar_PDC,'Enable','off')
     set(handles.distancia_fija,'Enable','on')
 end
 
@@ -860,19 +847,4 @@ function selector_fijos_CreateFcn(hObject, eventdata, handles)
 %       See ISPC and COMPUTER.
 if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
     set(hObject,'BackgroundColor','white');
-end
-
-
-% --- Executes on button press in usar_PDC.
-function usar_PDC_Callback(hObject, eventdata, handles)
-% hObject    handle to usar_PDC (see GCBO)
-% eventdata  reserved - to be defined in a future version of MATLAB
-% handles    structure with handles and user data (see GUIDATA)
-
-% Hint: get(hObject,'Value') returns toggle state of usar_PDC
-
-if get(hObject,'Value') == 0
-   set(handles.puntos_fijos,'Enable','on')
-elseif get(hObject,'Value') == 1
-   set(handles.puntos_fijos,'Enable','off')
 end

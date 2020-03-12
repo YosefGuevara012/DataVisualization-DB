@@ -1,4 +1,4 @@
-Driver_Behaviour_Simulator Executable
+DriverBehaviour Executable
 
 1. Prerequisites for Deployment 
 
@@ -27,7 +27,7 @@ NOTE: You will need administrator rights to run the MATLAB Runtime installer.
 
 Files to Package for Standalone 
 ================================
--Driver_Behaviour_Simulator.exe
+-DriverBehaviour.exe
 -MCRInstaller.exe 
     Note: if end users are unable to download the MATLAB Runtime using the
     instructions in the previous section, include it when building your 
